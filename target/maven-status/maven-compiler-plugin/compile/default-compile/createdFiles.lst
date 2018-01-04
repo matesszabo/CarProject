@@ -1,0 +1,15 @@
+hu\unideb\inf\matesszabo\model\Image.class
+hu\unideb\inf\matesszabo\model\package-info.class
+hu\unideb\inf\matesszabo\model\Price.class
+hu\unideb\inf\matesszabo\utils\IMRouter.class
+hu\unideb\inf\matesszabo\services\CarListService.class
+hu\unideb\inf\matesszabo\api\CarByLink.class
+hu\unideb\inf\matesszabo\model\ResultList.class
+hu\unideb\inf\matesszabo\services\CarByLinkService.class
+hu\unideb\inf\matesszabo\model\ResultItem.class
+hu\unideb\inf\matesszabo\processor\CarProcessor.class
+hu\unideb\inf\matesszabo\model\Car.class
+hu\unideb\inf\matesszabo\processor\CarListProcessor.class
+hu\unideb\inf\matesszabo\model\MPG.class
+hu\unideb\inf\matesszabo\Main.class
+hu\unideb\inf\matesszabo\api\CarList.class

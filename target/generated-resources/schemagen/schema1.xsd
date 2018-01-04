@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.inf.unideb.hu/UsedCars" elementFormDefault="qualified" targetNamespace="http://www.inf.unideb.hu/UsedCars" version="1.0">
+
+  <xs:element name="car" type="tns:car"/>
+
+  <xs:element name="image" type="tns:image"/>
+
+  <xs:element name="price" type="tns:price"/>
+
+  <xs:element name="resultItem" type="tns:resultItem"/>
+
+  <xs:element name="resultList" type="tns:resultList"/>
+
+  <xs:complexType name="car">
+<xs:annotation>
+<xs:documentation><![CDATA[Created by mates on 2018. 01. 02..]]></xs:documentation>
+</xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element ref="tns:price"/>
+      <xs:element minOccurs="0" name="trim" type="xs:string"/>
+      <xs:element name="exteriorColor" type="xs:string"/>
+      <xs:element minOccurs="0" name="interiorColor" type="xs:string"/>
+      <xs:element minOccurs="0" name="mileage" type="xs:nonNegativeInteger"/>
+      <xs:element minOccurs="0" name="ctyMpg" type="xs:int"/>
+      <xs:element minOccurs="0" name="hwyMpg" type="xs:int"/>
+      <xs:element minOccurs="0" name="transmission" type="xs:string"/>
+      <xs:element minOccurs="0" name="engine" type="xs:string"/>
+      <xs:element minOccurs="0" name="driveType" type="xs:string"/>
+      <xs:element minOccurs="0" name="fuelType" type="xs:string"/>
+      <xs:element minOccurs="0" name="includedFeatures" type="xs:string"/>
+      <xs:element minOccurs="0" ref="tns:image"/>
+      <xs:element minOccurs="0" name="place" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="price">
+    <xs:simpleContent>
+      <xs:extension base="xs:decimal">
+        <xs:attribute name="currency" type="xs:token" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="image">
+    <xs:sequence/>
+    <xs:attribute name="url" type="xs:string"/>
+  </xs:complexType>
+
+  <xs:complexType name="resultItem">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element minOccurs="0" ref="tns:price"/>
+      <xs:element name="info" type="xs:string"/>
+      <xs:element name="miles" type="xs:int"/>
+      <xs:element name="location" type="xs:string"/>
+      <xs:element minOccurs="0" name="exteriorColor" type="xs:string"/>
+      <xs:element minOccurs="0" name="interiorColor" type="xs:string"/>
+      <xs:element name="VIN" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="resultList">
+    <xs:sequence>
+      <xs:element name="from" type="xs:int"/>
+      <xs:element name="numOfItem" type="xs:int"/>
+      <xs:element minOccurs="0" name="results">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="result" type="tns:resultItem"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="uri" type="xs:string"/>
+  </xs:complexType>
+</xs:schema>
