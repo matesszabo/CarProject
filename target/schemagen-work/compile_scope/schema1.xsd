@@ -49,7 +49,7 @@
     <xs:sequence>
       <xs:element name="name" type="xs:string"/>
       <xs:element ref="tns:price" minOccurs="0"/>
-      <xs:element name="info" type="xs:string"/>
+      <xs:element ref="tns:image"/>
       <xs:element name="miles" type="xs:int"/>
       <xs:element name="location" type="xs:string"/>
       <xs:element name="exteriorColor" type="xs:string" minOccurs="0"/>

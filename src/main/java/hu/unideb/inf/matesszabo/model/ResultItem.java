@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.*;
         propOrder = {
                 "name",
                 "price",
-                "info",
+                "image",
                 "miles",
                 "location",
                 "exteriorColor",
@@ -25,7 +25,7 @@ public class ResultItem {
     private String name;
 
     @XmlElement(required = true)
-    private String info;
+    private Image image;
 
     @XmlElement(required = true)
     private Integer miles;
@@ -45,10 +45,10 @@ public class ResultItem {
     @XmlElement
     private Price price;
 
-    public ResultItem(String uri, String name, String info, Integer miles, String location, String exteriorColor, String interiorColor, String VIN, Price price) {
+    public ResultItem(String uri, String name, Image image, Integer miles, String location, String exteriorColor, String interiorColor, String VIN, Price price) {
         this.uri = uri;
         this.name = name;
-        this.info = info;
+        this.image = image;
         this.miles = miles;
         this.location = location;
         this.exteriorColor = exteriorColor;
@@ -84,12 +84,12 @@ public class ResultItem {
         this.price = price;
     }
 
-    public String getInfo() {
-        return info;
+    public Image getImage() {
+        return image;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Integer getMiles() {

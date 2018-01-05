@@ -29,7 +29,7 @@ public class Main extends Application {
         IMRouter router = new IMRouter(getContext(), PATH, PORT);
         router.attach("/car?id={id}", CarByLink.class);
         //router.attach("/carList?size={size}&zip={zip}&make={make}&bodystyle={bodystyle}&minprice={minprice}&maxprice={maxprice}&minyear={minyear}&maxyear={maxyear}&minmileage={minmileage}&maxmileage={maxmileage}&color={color}&pricerating={pricerating}&drivetype={drivetype}&fueltype={fueltype}&transmission={transmission}&engine={engine}", CarList.class);
-        router.attach("/carList?make={make}", CarList.class);
+        router.attach("/carList?make={make}&model={model}", CarList.class);
 
         return router.getRouter();
     }

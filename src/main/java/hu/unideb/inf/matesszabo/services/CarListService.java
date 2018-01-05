@@ -20,7 +20,7 @@ public class CarListService {
     }
 
 
-    public ResultList doSearch(String size, String zip, String make, String bodyStyle, String minPrice, String maxPrice, String minYear, String maxYear, String minMileage, String maxMileage, String color, String priceRating, String driveType, String fuelType, String transmission, String engine) throws IOException {
+    public ResultList doSearch(String size, String zip, String make,String model, String bodyStyle, String minPrice, String maxPrice, String minYear, String maxYear, String minMileage, String maxMileage, String color, String priceRating, String driveType, String fuelType, String transmission, String engine) throws IOException {
 
         WebClient webClient = new WebClient();
         String uri = SEARCH_URI;
@@ -31,7 +31,10 @@ public class CarListService {
             uri += "?listlimit=" + tempSize;
         }*/
         if (make != null && !make.isEmpty()){
-            uri=uri+make;
+            uri=uri+make+"/";
+        }
+        if (model != null && !model.isEmpty()){
+            uri=uri+model+"/";
         }
         if (zip != null && !zip.isEmpty()){
             uri=uri+zip+"/";
@@ -87,17 +90,15 @@ public class CarListService {
         if (engine != null && !engine.isEmpty()){
             uri=uri+engine+"/";
         }
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!   1   !!!!!!!!!!!!!!!!!!!!!!!!"+uri);
-        HtmlPage page = webClient.getPage("https://www.truecar.com/used-cars-for-sale/listings/ford/");
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!   2   !!!!!!!!!!!!!!!!!!!!!!!!");
-        String content = page.getWebResponse().getContentAsString();
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!   3   !!!!!!!!!!!!!!!!!!!!!!!!");
-        Document doc = Jsoup.parse(content);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!   4   !!!!!!!!!!!!!!!!!!!!!!!!");
+
+        Document doc = Jsoup.connect(uri).userAgent("Mozzila").get();
+
+        //HtmlPage page = webClient.getPage("https://www.truecar.com/used-cars-for-sale/listings/ford/");
+       // String content = page.getWebResponse().getContentAsString();
+       //Document doc = Jsoup.parse(content);
         CarListProcessor carListProcessor = new CarListProcessor();
         ResultList resultList = carListProcessor.parse(doc,size);
         resultList.setNumOfItem(tempSize);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!   5   !!!!!!!!!!!!!!!!!!!!!!!!");
         return resultList;
     }
 }

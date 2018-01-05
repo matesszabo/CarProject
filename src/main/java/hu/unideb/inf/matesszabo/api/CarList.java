@@ -19,6 +19,7 @@ public class CarList extends ServerResource {
         //String size = getAttribute("size");
         //String zip = getAttribute("zip");
         String make = getAttribute("make");
+        String model = getAttribute("model");
         /*String bodyStyle = getAttribute("bodystyle");
         String minPrice = getAttribute("minprice");
         String maxPrice = getAttribute("maxprice");
@@ -38,7 +39,7 @@ public class CarList extends ServerResource {
 
         try {
             //return carListService.doSearch(size,zip,make,bodyStyle,minPrice,maxPrice,minYear,maxYear,minMileage,maxMileage,color,priceRating,driveType,fuelType,transmission,engine);
-            return carListService.doSearch(null,null,make,null,null,null,null,null,null,null,null,null,null,null,null,null);
+            return carListService.doSearch(null,null,make,model,null,null,null,null,null,null,null,null,null,null,null,null,null);
         } catch (Exception e) {
             throw new ResourceException(Status.CLIENT_ERROR_NOT_FOUND);
         }
