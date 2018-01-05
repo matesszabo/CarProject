@@ -7,9 +7,12 @@ import hu.unideb.inf.matesszabo.model.ResultList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,7 +20,7 @@ import java.util.List;
  * Created by mates on 2018. 01. 03..
  */
 public class CarListProcessor {
-
+    private static Logger logger = LoggerFactory.getLogger(CarListProcessor.class);
     private Element element;
     private Document doc;
     private Integer maxItems;
@@ -29,7 +32,7 @@ public class CarListProcessor {
     public ResultList parse(Document doc, String size) throws IOException {
         ResultList resultList = null;
         //maxItems=Integer.parseInt(size);
-        maxItems=50;
+        maxItems=200;
         try {
             this.doc = doc;
             resultList = doProcess(doc);
@@ -53,7 +56,7 @@ public class CarListProcessor {
         } catch(Exception e) {
             throw new IOException("Malformed document");
         }*/
-        return 30;
+        return 70;
     }
 
     private List<ResultItem> extractItems(Document doc) throws IOException {
@@ -195,7 +198,7 @@ public class CarListProcessor {
         try {
             //nextPage = doc.select("ul.pagination > li:nth-last-child(2)").get(0).attr("abs:href");
             nextPage = doc.select(".pagination > li:nth-last-child(2) > a:nth-child(1)").get(0).attr("abs:href");
-            //logger.info("Next page: {}", nextPage);
+            logger.info("Next page: {}", nextPage);
 
         } catch(Exception e) {
             // no more pages
@@ -226,16 +229,18 @@ public class CarListProcessor {
         int totalItems = getTotalItems(doc);
         loop:   while (totalItems != 0 && doc != null) {
             for (ResultItem item : extractItems(doc)) {
-
+                logger.info("URI: "+doc.location());
                 if (0 <= maxItems && maxItems <= items.size()) {
                     break loop;
                 }
                 items.add(item);
+                logger.info(String.valueOf(items.size()));
             }
             if (0 <= maxItems && maxItems <= items.size()) break;
 
             doc = getNextPage(doc);
         }
+        logger.info(String.valueOf(items.size()));
         return new ResultList("", 1, items.size(), items);
         //return null;
     }

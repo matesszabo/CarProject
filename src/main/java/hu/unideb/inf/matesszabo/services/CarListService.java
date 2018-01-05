@@ -98,7 +98,7 @@ public class CarListService {
        //Document doc = Jsoup.parse(content);
         CarListProcessor carListProcessor = new CarListProcessor();
         ResultList resultList = carListProcessor.parse(doc,size);
-        resultList.setNumOfItem(tempSize);
+        //resultList.setNumOfItem(tempSize);
         return resultList;
     }
 }
